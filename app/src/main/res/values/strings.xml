@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MobilePractical</string>
+    <string-array name="menuItem">
+        <item>Portal</item>
+        <item>Settings</item>
+        <item>Help</item>
+        <item>About</item>
+    </string-array>
+
+</resources>
