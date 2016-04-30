@@ -3,6 +3,7 @@ package com.example.james.mobilepractical;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +18,16 @@ public class MainActivity extends AppCompatActivity
 {
     String [] menuItems;
     ArrayAdapter<String> adapter;
+    String dbName = "NewsFeed";
+    String Table_Name = "NewsList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //SQLiteDatabase checkData = openOrCreateDatabase(dbName, MODE_PRIVATE, null);
+        //this.deleteDatabase("NewsFeed");
         checkDb();
 
 
@@ -55,17 +60,19 @@ public class MainActivity extends AppCompatActivity
     public boolean checkDb()
     {
         SQLiteDatabase checkData = null;
-        SQLiteDatabase myDB;
-                String path = "/data/data/com.example.james.mobilepractical";
+        String path = Environment.getDataDirectory() +
+                      "/data/com.example.james.mobilepractical/databases/" + dbName;
         try {
-            checkData = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-            checkData.execSQL("Create Table if not exists News(ID INTEGER NOT NULL AUTO_INCREMENT " +
-                    "Title VARCHAR NOT NULL, Description VARCHAR NOT NULL, Image VarChar NOT NULL");
+            checkData = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+            checkData.execSQL("Create Table if not exists " + Table_Name + "(ID INTEGER PRIMARY KEY," +
+                              " Title TEXT NOT NULL, Description TEXT NOT NULL, Image TEXT NOT NULL," +
+                              " Section TEXT NOT NULL);");
+            //checkData.execSQL("Drop table if exists " + Table_Name);
             checkData.close();
         }
         catch (SQLiteException e)
         {
-            myDB = openOrCreateDatabase("NewsFeed", MODE_PRIVATE, null);
+            checkData = openOrCreateDatabase("dbName", MODE_PRIVATE, null);
             e.getMessage();
         }
         return checkData != null;
