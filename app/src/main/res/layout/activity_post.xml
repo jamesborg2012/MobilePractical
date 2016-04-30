@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.james.mobilepractical.PostActivity">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginRight="240dp"
+        android:text = "CANCEL"
+        android:id = "@+id/btn_cancel" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/btn_submit"
+        android:text = "SUBMIT"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="10dp"/>
+
+    <ImageButton
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/btn_picture"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="85dp"
+        android:layout_marginTop="200dp"
+       />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/txt_title"
+        android:text="Post Title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="250dp"
+        android:layout_marginBottom="470dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/txt_desc"
+        android:text="Post Description"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="385dp"
+        android:layout_marginTop="90dp"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/edit_title"
+        android:layout_marginLeft="110dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="450dp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/edit_desc"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="350dp"
+        android:layout_marginTop="120dp"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="85dp"
+        android:layout_marginTop="205dp"
+        />
+
+</RelativeLayout>
