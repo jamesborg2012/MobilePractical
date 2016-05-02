@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity
     ArrayAdapter<String> adapter;
     String dbName = "NewsFeed";
     String Table_Name = "NewsList";
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         //SQLiteDatabase checkData = openOrCreateDatabase(dbName, MODE_PRIVATE, null);
         //this.deleteDatabase("NewsFeed");
         checkDb();
+
 
 
         menuItems= getResources().getStringArray(R.array.menuItem);
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity
                         Intent newsActivity = new Intent(MainActivity.this, NewsActivity.class);
                         startActivity(newsActivity);
                         break;
+
+
                 }
             }
         });
@@ -64,15 +68,15 @@ public class MainActivity extends AppCompatActivity
                       "/data/com.example.james.mobilepractical/databases/" + dbName;
         try {
             checkData = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
-            checkData.execSQL("Create Table if not exists " + Table_Name + "(ID INTEGER PRIMARY KEY," +
+            /*checkData.execSQL("Create Table if not exists " + Table_Name + "(ID INTEGER PRIMARY KEY," +
                               " Title TEXT NOT NULL, Description TEXT NOT NULL, Image TEXT NOT NULL," +
-                              " Section TEXT NOT NULL);");
+                              " Section TEXT NOT NULL);");*/
             //checkData.execSQL("Drop table if exists " + Table_Name);
             checkData.close();
         }
         catch (SQLiteException e)
         {
-            checkData = openOrCreateDatabase("dbName", MODE_PRIVATE, null);
+            //checkData = openOrCreateDatabase(dbName, MODE_PRIVATE, null);
             e.getMessage();
         }
         return checkData != null;
