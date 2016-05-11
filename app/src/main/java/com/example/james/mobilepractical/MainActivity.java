@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //SQLiteDatabase checkData = openOrCreateDatabase(dbName, MODE_PRIVATE, null);
-        //this.deleteDatabase("NewsFeed");
-        checkDb();
+
 
 
 
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    public boolean checkDb()
+    /*public boolean checkDb()
     {
         SQLiteDatabase checkData = null;
         String path = Environment.getDataDirectory() +
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity
             checkData = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
             /*checkData.execSQL("Create Table if not exists " + Table_Name + "(ID INTEGER PRIMARY KEY," +
                               " Title TEXT NOT NULL, Description TEXT NOT NULL, Image TEXT NOT NULL," +
-                              " Section TEXT NOT NULL);");*/
+                              " Section TEXT NOT NULL);");
             //checkData.execSQL("Drop table if exists " + Table_Name);
             checkData.close();
         }
@@ -82,8 +80,12 @@ public class MainActivity extends AppCompatActivity
         return checkData != null;
 
 
-    }
+    }*/
 
+
+    //SQLiteDatabase checkData = openOrCreateDatabase(dbName, MODE_PRIVATE, null);
+    //this.deleteDatabase("NewsFeed");
+    //checkDb();
 
 
 

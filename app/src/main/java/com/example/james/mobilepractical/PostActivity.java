@@ -21,10 +21,9 @@ import android.widget.Toast;
 public class PostActivity extends AppCompatActivity {
 
     private ImageView imgView;
-    private String selectedImagePath, title, desc, dbName = "NewsFeed", tableName = "NewsList";
-    public String path = Environment.getDataDirectory() +
-            "/data/com.example.james.mobilepractical/databases/" + dbName;
-    SQLiteDatabase myDB = null;
+    private String selectedImagePath, title, desc;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +54,21 @@ public class PostActivity extends AppCompatActivity {
                     EditText des = (EditText) findViewById(R.id.edit_desc);
                     title = ttl.getText().toString().trim();
                     desc = des.getText().toString().trim();
-                    selectedImagePath = "hello";
-                    myDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
-                    myDB.execSQL("Insert into NewsList(Title, Description, Image, Section) Values('" + title + "','" + desc + "','" + selectedImagePath + "', 'Sports');");
-                    myDB.close();
+                    String section = "Sports";
+                    String img = selectedImagePath;
+                    NewsFeed nws = new NewsFeed();
+                    nws.title = title;
+                    nws.desc = desc;
+                    nws.img = img;
+                    nws.sect = section;
+                    nws.save();
                     Toast.makeText(getApplicationContext(), "Insert was successful", Toast.LENGTH_LONG).show();
                 }
             });
         }
         catch(Exception e)
         {
-            Toast.makeText(getApplicationContext(), "Arma idaj gbin", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Insert was not successful", Toast.LENGTH_LONG).show();
 
         }
 
@@ -98,3 +101,11 @@ public class PostActivity extends AppCompatActivity {
         return cursor.getString(column_index);
     }
 }
+/* dbName = "NewsFeed", tableName = "NewsList";
+    public String path = Environment.getDataDirectory() +
+            "/data/com.example.james.mobilepractical/databases/" + dbName;
+    SQLiteDatabase myDB = null;*/
+//selectedImagePath = "hello";
+                    /*myDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+                    myDB.execSQL("Insert into NewsList(Title, Description, Image, Section) Values('" + title + "','" + desc + "','" + selectedImagePath + "', 'Sports');");
+                    myDB.close();*/
