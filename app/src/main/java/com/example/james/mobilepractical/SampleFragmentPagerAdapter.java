@@ -6,9 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * Created by James on 27/04/2016.
- */
+
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter
 {
     final int PAGE_COUNT = 3;

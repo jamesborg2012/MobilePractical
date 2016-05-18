@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity
 {
     String [] menuItems;
     ArrayAdapter<String> adapter;
-    String dbName = "NewsFeed";
-    String Table_Name = "NewsList";
-    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,11 +25,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         menuItems= getResources().getStringArray(R.array.menuItem);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItems); //ArrayAdapter to display items of array in ListView
 
         ListView list = (ListView) findViewById(R.id.lView);
 
@@ -44,12 +38,12 @@ public class MainActivity extends AppCompatActivity
                 switch(position)
                 {
                     case 0:
-                        Intent newActivity = new Intent(MainActivity.this, PostActivity.class);
+                        Intent newActivity = new Intent(MainActivity.this, PostActivity.class); //When the first item in ListView is pressed, PostActivity is launched
                         startActivity(newActivity);
                         break;
 
                     case 1:
-                        Intent newsActivity = new Intent(MainActivity.this, NewsActivity.class);
+                        Intent newsActivity = new Intent(MainActivity.this, NewsActivity.class); //When the second item in ListView is pressed, NewsActivity is launched
                         startActivity(newsActivity);
                         break;
 

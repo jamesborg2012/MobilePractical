@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -12,11 +11,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 
 public class PostActivity extends AppCompatActivity {
 
@@ -29,10 +27,8 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE});
-
         imgView = (ImageView) findViewById(R.id.imageView);
-        ImageButton img = (ImageButton) findViewById(R.id.btn_picture);
+        ImageButton img = (ImageButton) findViewById(R.id.btn_picture); //When the ImageButton is tapped, it allows for image selection from local or external storage
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +38,43 @@ public class PostActivity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
             }
         });
+    }
 
-        Button btn = (Button) findViewById(R.id.btn_submit);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) //This method gets the selected image and puts it on the ImageView
+    {
+        if(resultCode == RESULT_OK)
+        {
+            if(requestCode == 1)
+            {
+                Uri image = data.getData();
+                selectedImagePath = getPath(image);
+                System.out.println("Image Path: " + selectedImagePath);
+                imgView.bringToFront();
+                imgView.setImageURI(image);
+            }
+        }
+    }
+
+    public String getPath(Uri uri) //This method gets the path to the selected image so it can be displayed.
+    {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+}
+/* dbName = "NewsFeed", tableName = "NewsList";
+    public String path = Environment.getDataDirectory() +
+            "/data/com.example.james.mobilepractical/databases/" + dbName;
+    SQLiteDatabase myDB = null;*/
+//selectedImagePath = "hello";
+                    /*myDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+                    myDB.execSQL("Insert into NewsList(Title, Description, Image, Section) Values('" + title + "','" + desc + "','" + selectedImagePath + "', 'Sports');");
+                    myDB.close();*/
+
+
+/*Button btn = (Button) findViewById(R.id.btn_submit);
         try
         {
             btn.setOnClickListener(new View.OnClickListener() {
@@ -70,42 +101,4 @@ public class PostActivity extends AppCompatActivity {
         {
             Toast.makeText(getApplicationContext(), "Insert was not successful", Toast.LENGTH_LONG).show();
 
-        }
-
-
-    }
-
-
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if(resultCode == RESULT_OK)
-        {
-            if(requestCode == 1)
-            {
-                Uri image = data.getData();
-                selectedImagePath = getPath(image);
-                System.out.println("Image Path: " + selectedImagePath);
-                imgView.bringToFront();
-                imgView.setImageURI(image);
-            }
-        }
-    }
-
-    public String getPath(Uri uri)
-    {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-}
-/* dbName = "NewsFeed", tableName = "NewsList";
-    public String path = Environment.getDataDirectory() +
-            "/data/com.example.james.mobilepractical/databases/" + dbName;
-    SQLiteDatabase myDB = null;*/
-//selectedImagePath = "hello";
-                    /*myDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
-                    myDB.execSQL("Insert into NewsList(Title, Description, Image, Section) Values('" + title + "','" + desc + "','" + selectedImagePath + "', 'Sports');");
-                    myDB.close();*/
+        }*/

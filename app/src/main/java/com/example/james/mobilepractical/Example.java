@@ -21,7 +21,6 @@ import java.util.List;
 public class Example extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPage;
-    public List<NewsFeed> news;
 
     public static Example newInstance(int page) {
         Bundle args = new Bundle();
@@ -45,9 +44,4 @@ public class Example extends Fragment {
         textView.setText("Fragment No." + mPage);
         return view;
     }
-
-
-
-
 }
-    /**/
